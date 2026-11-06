@@ -1,0 +1,26 @@
+.ORIG x3000
+
+.EXTERNAL MultiplicacionSHIFTandADD-MULTIPLICARSHIFTANDADD
+
+        LD      R0, OPERANDO_A
+        LD      R1, OPERANDO_B
+        LD      R4, DIRECCION_MULT
+        JSRR    R4
+
+        ST      R0, RESULTADO_BAJO
+        ST      R1, RESULTADO_ALTO
+        HALT
+
+; 1.5 en Q8.8
+OPERANDO_A:     .FILL x0180
+
+; 2.25 en Q8.8
+OPERANDO_B:     .FILL x0240
+
+DIRECCION_MULT: .FILL MultiplicacionSHIFTandADD-MULTIPLICARSHIFTANDADD
+
+; Resultado esperado: 3.375 en Q16.16 = x00036000
+RESULTADO_BAJO: .FILL #0
+RESULTADO_ALTO: .FILL #0
+
+.END
